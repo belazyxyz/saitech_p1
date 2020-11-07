@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import os
+import xlsxwriter
 from openpyxl import load_workbook
 
 def _desc_pd_table(df):
@@ -137,15 +138,17 @@ def read_data(tally_file, asal_file, ledger_file, date_of_operation, combined_fi
 		writer.close()
 		print("Closed file...")
 
-		
 
-	with pd.ExcelWriter(output_file) as writer:
-		df2.to_excel(writer, sheet_name='Consolidated', index=False)
-		# table.to_excel(writer, sheet_name='Report')
-		print("Writing main data")
-		# for dd in splitted_df:
-			# print("Writing data for {}".format(dd))
-			# splitted_df[dd].to_excel(writer, sheet_name=str(dd).replace(":","_").split("T")[0], index=False)
+	# df2.to_csv('/tmp/aaaa.csv', encoding='utf-16')	
+	df2.to_excel(output_file, encoding='utf-16')	
+
+	# with pd.ExcelWriter(output_file, engine='xlsxwriter') as writer:
+	# 	df2.to_excel(writer, encoding='utf-16', sheet_name='Consolidated', index=False)
+	# 	# table.to_excel(writer, sheet_name='Report')
+	# 	print("Writing main data")
+	# 	# for dd in splitted_df:
+	# 		# print("Writing data for {}".format(dd))
+	# 		# splitted_df[dd].to_excel(writer, sheet_name=str(dd).replace(":","_").split("T")[0], index=False)
 	response['output_file'] = str(os.path.basename(output_file))
 	response['logs'] = data_report
 	return response

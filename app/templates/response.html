@@ -1,0 +1,82 @@
+{% include "header.html" %}
+<div class='col-lg-12'>
+    <div class='container row'>
+        <div class='col-sm-3'>
+            <legend>File</legend>
+            <a class='btn btn-primary col-sm-4 custom-file' href="outs/{{response.output_file}}">Download</a>
+        </div>
+        <div class='col-sm-9'>
+            <legend>{{response.logs.date}}</legend>
+            Number of Rows in Tally data file: {{response.logs.original_row_count}} <br>
+            Number of Rows in Tally data file for the given date: {{response.logs.row_count_after_date_filter}} /
+            {{response.logs.original_row_count}}<br>
+            Number of Rows in After merging Ledger data: {{response.logs.records_after_merging_ledger}} /
+            {{response.logs.row_count_after_date_filter}} <br>
+            Number of Rows in After merging ASAL data: {{response.logs.records_after_merging_asal}} /
+            {{response.logs.row_count_after_date_filter}} <br>
+            <hr>
+            <div class='row'>
+                <div class='col-sm-6'>
+                    <b>Missing items in ASAL file</b>
+                    <ul>
+                        {% for item in response.logs.missing_items_in_asal %}
+                        <li>{{item}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class='col-sm-6'>
+                    <b>Missing ledger in Ledger file</b>
+                    <ul>
+                        {% for item in response.logs.missing_items_in_ledger %}
+                        <li>{{item}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class='row'>
+
+            <div class='col-sm-6'>
+                <legend>Source data</legend>
+                <table class="table table-hover" width=100%>
+                    <th>Column</th>
+                    <th>SUM</th>
+                    <th>Average</th>
+                    <th>Row count</th>
+                    <th>Unique values</th>
+                    {% for line in response.logs.desc_original_data %}
+                    <tr>
+                        <td>{{line['column']}}</td>
+                        <td>{{line['sum']}}</td>
+                        <td>{{line['avg']}}</td>
+                        <td>{{line['rows']}}</td>
+                        <td>{{line['unique']}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <!-- <div class='col-sm-2'></div> -->
+            <div class='col-sm-6'>
+                <legend>Report data</legend>
+                <table class="table table-hover"  width=100%>
+                    <th>Column</th>
+                    <th>SUM</th>
+                    <th>Average</th>
+                    <th>Row count</th>
+                    <th>Unique values</th>
+                    {% for line in response.logs.desc_report_data %}
+                    <tr>
+                        <td>{{line['column']}}</td>
+                        <td>{{line['sum']}}</td>
+                        <td>{{line['avg']}}</td>
+                        <td>{{line['rows']}}</td>
+                        <td>{{line['unique']}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

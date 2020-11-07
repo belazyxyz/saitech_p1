@@ -1,0 +1,58 @@
+<html>
+<style>
+    .custom-file {
+        margin-top: 10px;
+    }
+</style>
+
+<body>
+    {% include "header.html" %}
+    <form class='col-lg-12 ' id='rule' enctype=multipart/form-data method="POST" action='/api/'>
+        <div class='container row'>
+            <!-- <fieldset class='col-sm-12 row'> -->
+            <legend>Upload Data</legend>
+            
+            <!-- DATE -->
+            <div class="form-group row">
+                <label for="example-datetime-local-input" class="col-3 col-form-label">Date</label>
+                <div class="col-9">
+                  <input class="form-control" type="date" value="" name='data_date' id="example-datetime-local-input">
+                </div>
+              </div>
+
+
+            <!-- </fieldset> -->
+            <div class="custom-file">
+                <input type="file" name='tallydata' class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose Tally RAW data file</label>
+            </div>
+            <div class="custom-file">
+                <input type="file" name='ledgerdata' class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose Ledger Master data file</label>
+            </div>
+            <div class="custom-file">
+                <input type="file" name='asaldata' class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose ASAL data file</label>
+            </div>
+            <button type="submit" class="btn btn-primary custom-file">Submit</button>
+    </div>
+    </form>
+    <hr>
+    
+    <form class='col-lg-6' enctype="multipart/form-data" method="POST" action='/merge/'>
+        <h2>Merge Processed Files</h2>
+        <div class="custom-file">
+            <input type="file" multiple name='mergefiles[]' class="custom-file-input"  id="customFiles">
+            <label class="custom-file-label" for="customFile">Upload multiple files</label>
+        </div>
+        <button type="submit" class="btn btn-primary custom-file">Download Combined File</button>
+    </form>
+</body>
+
+</html>
+<script>
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    }); 
+</script>

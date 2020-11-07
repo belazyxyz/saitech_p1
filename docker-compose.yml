@@ -6,6 +6,6 @@ services:
     container_name: saitech_p1
     restart: unless-stopped
     ports:
-    - 5000:5001
+    - 8000:5001
     # environment:
     #   MQTT_SERVER: 192.168.0.6

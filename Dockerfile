@@ -1,4 +1,4 @@
-FROM python
+FROM python:latest
 WORKDIR /project
 ADD . /project
 RUN pip install -r /project/requirements.txt

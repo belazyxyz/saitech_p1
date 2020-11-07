@@ -1,0 +1,11 @@
+---
+version: '3.1'
+services:
+  saitech_p1:
+    image: belazy/saitech_p1:main
+    container_name: saitech_p1
+    restart: unless-stopped
+    ports:
+    - 5000:5001
+    # environment:
+    #   MQTT_SERVER: 192.168.0.6

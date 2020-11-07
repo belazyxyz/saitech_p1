@@ -1,7 +1,6 @@
 FROM python
-WORKDIR /project/src
+WORKDIR /project
 ADD . /project
-ENV MQTT_SERVER $MQTT_SERVER
 RUN pip install -r /project/requirements.txt
 CMD ["python","app.py"]
 

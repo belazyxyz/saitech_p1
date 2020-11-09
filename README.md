@@ -4,6 +4,7 @@
 1. Install Docker on your local environment (https://docs.docker.com/docker-for-windows/install/)
 2. Install Docker compose (No need for Windows users)
 3. Copy the following content to `docker-compose.yml` file anywhere (pre: `c:\`)
+4.
 
 ```
 ---

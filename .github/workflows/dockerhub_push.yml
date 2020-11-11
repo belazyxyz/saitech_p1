@@ -21,9 +21,7 @@ jobs:
       - name: Push to Docker Hub
         uses: docker/build-push-action@v1
         with:
-          tag: latest
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: belazy/saitech_p1
-          tags: belazy/saitech_p1:latest
-          # tag_with_ref: false
+          tag_with_ref: true
